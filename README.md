@@ -3,4 +3,4 @@
 **Members:**
 - Daniel Cartagena
 - Josh Troy
-- Guideon Tan
+- Gideon Tan
