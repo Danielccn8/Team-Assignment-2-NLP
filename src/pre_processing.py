@@ -79,7 +79,7 @@ def filter_tokens_by_pos(tokens):
     filtered = [word for word, tag in tagged_tokens if tag in allowed_pos_tags]
     return filtered
 
-def clean_dataset(dataset, MIN_WORD_LENGTH=3, MAX_WORD_LENGTH=50, method=None, pos_filter=False, stop_w=False):
+def clean_dataset(dataset, min_word_len=3, max_word_len=64, method=None, pos_filter=False, stop_w=False):
     cleaned_premises = []
     cleaned_hypotheses = []
     cleaned_labels = []
@@ -99,8 +99,8 @@ def clean_dataset(dataset, MIN_WORD_LENGTH=3, MAX_WORD_LENGTH=50, method=None, p
             hypothesis = hypothesis.replace(contraction, full_form)
 
         # Remove punctuation/special chars
-        premise = re.sub(r'[^\w\s]', '', premise)
-        hypothesis = re.sub(r'[^\w\s]', '', hypothesis)
+        premise = re.sub(r'[^a-zA-Z0-9\s.-]', ' ', premise)
+        hypothesis = re.sub(r'[^a-zA-Z0-9\s.-]', ' ', hypothesis)
 
         # Normalize whitespace
         premise = re.sub(r'\s+', ' ', premise).strip()
@@ -132,12 +132,16 @@ def clean_dataset(dataset, MIN_WORD_LENGTH=3, MAX_WORD_LENGTH=50, method=None, p
             premise_tokens = [word for word in premise_tokens if word not in stop_words]
             hypothesis_tokens = [word for word in hypothesis_tokens if word not in stop_words]
 
-        # Now check token length AFTER cleaning
-        if (MIN_WORD_LENGTH <= len(premise_tokens) <= MAX_WORD_LENGTH and
-            MIN_WORD_LENGTH <= len(hypothesis_tokens) <= MAX_WORD_LENGTH):
+        #Now check token length AFTER cleaning
+        if (min_word_len <= len(premise_tokens) <= max_word_len and
+            min_word_len <= len(hypothesis_tokens) <= max_word_len):
             cleaned_premises.append(premise_tokens)
             cleaned_hypotheses.append(hypothesis_tokens)
             cleaned_labels.append(label)
+
+        # cleaned_premises.append(premise_tokens)
+        # cleaned_hypotheses.append(hypothesis_tokens)
+        # cleaned_labels.append(label)
         # else: skip row
 
     # Build DataFrame from all cleaned token lists
