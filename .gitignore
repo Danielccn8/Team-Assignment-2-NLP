@@ -1,0 +1,27 @@
+# --- Environments ---
+.venv/
+
+# Bytecode / caches
+__pycache__/
+*.pyc
+*.pth
+*.json
+*.txt
+*.zip
+*.tar
+*.gz
+
+# IDE/OS
+.vscode/
+
+# Models & large artifacts
+*.pth
+*.pt
+*.bin
+
+# Checkpoints
+.ipynb_checkpoints/
+
+Dataset/
+*.json
+

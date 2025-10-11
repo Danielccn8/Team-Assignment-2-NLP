@@ -11,11 +11,11 @@ class Config:
         # Transformer
         self.batch_size = 64
         self.n_heads = 2
-        self.n_layers = 2
+        self.n_layers = 1
         self.dropout = 0.2
         self.num_classes = 2
         self.lr = 0.00005
-        self.wd = 0.003
+        self.wd = 0.00005
         self.train_num_epoch = 7
         self.max_trans_len = 130
         self.label_smoothing = 0.0
