@@ -18,7 +18,7 @@ __pycache__/
 *.pth
 *.pt
 *.bin
-
+*.json
 # Checkpoints
 .ipynb_checkpoints/
 
